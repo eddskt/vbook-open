@@ -1,0 +1,96 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #eff3ff;
+  background: #0f1220;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #202845 0%, #0f1220 45%);
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.main-card,
+.notification-card {
+  border: 1px solid #2e3657;
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(20, 26, 45, 0.85);
+}
+
+.subtitle {
+  margin-top: -0.5rem;
+  color: #a9b5de;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+select,
+button {
+  border-radius: 10px;
+  border: 1px solid #3f4b73;
+  background: #1a2340;
+  color: #fff;
+  padding: 0.6rem 0.7rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0.9rem 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.status-box,
+.discord-box,
+.notification-item {
+  border: 1px solid #303a63;
+  border-radius: 12px;
+  padding: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.notification-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ghost {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

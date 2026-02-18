@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: ../apps/api
+    command: npm run dev
+    ports:
+      - "3333:3333"
+    environment:
+      - PORT=3333
+    depends_on:
+      - rabbitmq
+      - redis
+
+  web:
+    build:
+      context: ../apps/web
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  coturn:
+    image: coturn/coturn:latest
+    command: ["-n", "--log-file=stdout", "--lt-cred-mech", "--realm=omegle-tv.local", "--fingerprint", "--use-auth-secret"]
+    ports:
+      - "3478:3478"
+      - "3478:3478/udp"
